@@ -74,34 +74,34 @@ float32_t  snr;
  
 int32_t main(void)
 {
-//   uint32_t i;
-//   arm_fir_instance_f32 S;
+  uint32_t i;
+  arm_fir_instance_f32 S;
    arm_status status;
    float32_t  *inputF32, *outputF32, *outputMagF32; 
-//   /* Initialize input and output buffer pointers */
+  /* Initialize input and output buffer pointers */
    inputF32 = &testInput_f32_1kHz_15kHz[0];
    outputF32 = &testOutput[0];
    outputMagF32 = &testOutputMag[0];
-//   /* Call FIR init function to initialize the instance structure. */
-//   arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&firCoeffs32[0], &firStateF32[0], blockSize);
-//   /* ----------------------------------------------------------------------
-//   ** Call the FIR process function for every blockSize samples
-//   ** ------------------------------------------------------------------- */
-//   for(i=0; i < numBlocks; i++)
-//   {
-//     arm_fir_f32(&S, inputF32 + (i * blockSize), outputF32 + (i * blockSize), blockSize);
-//   }
-//   int k = 0;
+  /* Call FIR init function to initialize the instance structure. */
+  arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&firCoeffs32[0], &firStateF32[0], blockSize);
+  /* ----------------------------------------------------------------------
+  ** Call the FIR process function for every blockSize samples
+  ** ------------------------------------------------------------------- */
+  for(i=0; i < numBlocks; i++)
+  {
+    arm_fir_f32(&S, inputF32 + (i * blockSize), outputF32 + (i * blockSize), blockSize);
+  }
+  int k = 0;
 
-//   for (i=0; i < TEST_LENGTH_SAMPLES; i++ )
-//   {
-//       printf("%d: %f, %f \r\n", k,testOutput[i], inputF32[i]);
-//       k++;
-//   }
+  for (i=0; i < TEST_LENGTH_SAMPLES; i++ )
+  {
+      printf("%d: %f, %f \r\n", k,testOutput[i], inputF32[i]);
+      k++;
+  }
 
-    uint16_t i;
-    arm_rfft_fast_instance_f32 S;
-    arm_cfft_instance_f32 K;
+    // uint16_t i;
+    // arm_rfft_fast_instance_f32 S;
+    // arm_cfft_instance_f32 K;
     
     /*正變換*/ 
     // int ifftFlag = 0 ;
@@ -119,19 +119,19 @@ int32_t main(void)
     // arm_cmplx_mag_f32(outputF32, outputMagF32, TEST_LENGTH_SAMPLES);
     //arm_cfft_init_f32( &K ,TEST_LENGTH_SAMPLES );
     
-    arm_cfft_f32(& K, inputF32, 0,1);
-    arm_cmplx_mag_f32(inputF32, outputF32, TEST_LENGTH_SAMPLES/2);
+    // arm_cfft_f32(& K, inputF32, 0,1);
+    // arm_cmplx_mag_f32(inputF32, outputF32, TEST_LENGTH_SAMPLES/2);
     
-    /*求相頻*/ 
-    //PowerPhaseRadians_f32(outputMagF32, Phase_f32, TEST_LENGTH_SAMPLES, 0.5f );
+    // /*求相頻*/ 
+    // //PowerPhaseRadians_f32(outputMagF32, Phase_f32, TEST_LENGTH_SAMPLES, 0.5f );
     
     
-    /*串口列印求解的振幅頻率和相頻*/ 
-    for (i= 0 ; i<TEST_LENGTH_SAMPLES; i++ )
-    {
-        //printf( " %f, %f\r\n " , outputMagF32[i], refOutput[i]);
-        printf( " %f, %f\r\n " , outputF32[i], refOutput[i]);
-    }
+    // /*串口列印求解的振幅頻率和相頻*/ 
+    // for (i= 0 ; i<TEST_LENGTH_SAMPLES; i++ )
+    // {
+    //     //printf( " %f, %f\r\n " , outputMagF32[i], refOutput[i]);
+    //     printf( " %f, %f\r\n " , outputF32[i], refOutput[i]);
+    // }
 
     
   /* ----------------------------------------------------------------------
