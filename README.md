@@ -10,4 +10,8 @@
 1. 使用Mbed OS File -> New Program -> empty Mbed OS program
 2. 將Mbed_main/main.cpp 及 Mbed_main/arm_fir_data.c，放入專案中
 3. arm_fir_data.c中有兩個array，第一個是放原始資料，也就是在"資料蒐集"的step1得到的資料；第二個ref則是放matlab算出的參考資料，為"資料蒐集"的step2得到，作為和stm32運算結果的比較。
-4. 
+4. 使用stm32來進行資料處理，透落fir filter來進行計算之後輸出數值，並比較其與matlab求出的資料(ref)是否相同(snr數值是否超過threshold)
+   - 得出的資料檔案至於fir_data file 中
+   - 靜態及動態
+   - 欄位標題：編號；stm32 輸出資料；matlab輸出資料
+5. 使用matlab來進行化圖來和原始的資訊進行
